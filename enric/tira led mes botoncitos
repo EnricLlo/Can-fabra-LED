@@ -1,0 +1,27 @@
+#include <FastLED.h>
+
+// How many leds in your strip?
+#define NUM_LEDS 120
+#define DATA_PIN 13
+
+CRGB leds[1];
+
+int boton2 = 0;
+
+void setup() {
+ pinMode(2, INPUT);
+  FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);  // GRB ordering is assumed
+
+ 
+}
+
+void loop() {
+boton2 = digitalRead(2);
+if (boton2 == 1){
+    leds[0] = CRGB::Black;
+  FastLED.show();
+}else {
+    leds[0] = CRGB::Red;
+  FastLED.show();
+}
+}
