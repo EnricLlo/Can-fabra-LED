@@ -1,0 +1,50 @@
+
+#include <FastLED.h>
+#define NUM_LEDS 180
+#define DATA_PIN 3
+CRGB leds[NUM_LEDS];
+
+int button1 = 2;
+int button2 = 4;
+int button3 = 7;
+
+void setup() {
+  FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);
+  Serial.begin(9600);
+
+
+  pinMode(button1, INPUT_PULLUP);
+  pinMode(button2, INPUT_PULLUP);
+  pinMode(button3, INPUT_PULLUP);
+
+  // Apagar els LEDs al començar
+
+}
+
+void loop() {
+  int stateButton1 = digitalRead(button1);
+  int stateButton2 = digitalRead(button2);
+  int stateButton3 = digitalRead(button3);
+
+   if (stateButton1 == LOW) {  
+    Serial.println("Botó 1 clicat");
+    leds[0].red = 255;
+  }
+  else{
+     leds[0].red = 0;
+  }
+   if (stateButton2 == LOW) {
+    Serial.println("Botó 2 clicat");
+    leds[0].green = 255;
+  }
+  else{
+     leds[0].green = 0;
+  }
+   if (stateButton3 == LOW) {
+    Serial.println("Botó 3 clicat");
+     leds[0].blue = 255;
+  }
+  else{
+     leds[0].blue = 0;
+  }
+  FastLED.show();
